@@ -8,4 +8,8 @@
     <string name="_30_may">30 May</string>
     <string name="Monday">Monday</string>
     <string name="letter_m">M</string>
+    <string name="points">Points</string>
+    <string name="recipe_of_the_day">Recipe of the day</string>
+    <string name="protein_pancakes_with_strawberries">Protein pancakes with strawberries</string>
+    <string name="placeholder">Placeholder!</string>
 </resources>

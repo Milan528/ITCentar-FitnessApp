@@ -59,9 +59,11 @@ public class FitnessAppRetrofitClient implements IRetrofitClient {
             public void onResponse(Call<Event> call, Response<Event> response) {
 
                 if(!response.isSuccessful()){
+                    callback.getEventFailed("Failed to load event");
                     return;
                 }
                 Event event= response.body();
+                event.setEventId(eventId);
                 callback.getEventSuccess(event);
             }
             @Override
@@ -83,6 +85,7 @@ public class FitnessAppRetrofitClient implements IRetrofitClient {
                 }
                 WeeklyProgress progress= response.body();
                 callback.getWeeklyProgressSuccess(progress);
+
             }
             @Override
             public void onFailure(Call<WeeklyProgress> call, Throwable t) {

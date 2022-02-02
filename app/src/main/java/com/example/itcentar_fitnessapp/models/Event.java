@@ -6,6 +6,7 @@ public class Event {
     private Mindset mindset;
     private String workout_tip;
     private boolean completed;
+    private transient Integer eventId;
 
     public Workout getWorkout() {
         return workout;
@@ -45,5 +46,13 @@ public class Event {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Integer getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Integer eventId) {
+        this.eventId = eventId;
     }
 }

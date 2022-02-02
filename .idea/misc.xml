@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/drawable/rounded_layout_lightteal_border.xml" value="0.28615384615384615" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/drawable/rounded_layout_teal_background.xml" value="0.2814814814814815" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/drawable/text_view_round_shape_event_missing.xml" value="0.28307692307692306" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/drawable/text_view_round_shape_event_not_finished.xml" value="0.28307692307692306" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/drawable/text_view_round_shape_teal_background.xml" value="0.28307692307692306" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/drawable/text_view_round_shape_teal_border.xml" value="0.28307692307692306" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/day_of_week_holder.xml" value="0.27447916666666666" />
         <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/header_view.xml" value="0.264" />
+        <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/test.xml" value="0.27447916666666666" />
+        <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/view_header.xml" value="0.264" />
+        <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/view_placeholder.xml" value="0.25390625" />
+        <entry key="..\:/Android-Projects/ITCentarFitnessApp/app/src/main/res/layout/view_recipe_or_mindset.xml" value="0.136" />
       </map>
     </option>
   </component>
