@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ITCentar-FitnessApp</string>
+    <string name="greetings">Greetings</string>
+    <string name="username">Username</string>
+    <string name="workout_level">Workout level</string>
+    <string name="dayoftheweek">DayOfTheWeek</string>
+    <string name="dayOfTheWeek">Day of the week</string>
+    <string name="_30_may">30 May</string>
+    <string name="Monday">Monday</string>
+    <string name="letter_m">M</string>
+</resources>
