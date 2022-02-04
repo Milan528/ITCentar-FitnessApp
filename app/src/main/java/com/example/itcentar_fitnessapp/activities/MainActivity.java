@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.example.itcentar_fitnessapp.R;
 import com.example.itcentar_fitnessapp.adapters.DaysOfWeekViewAdapter;
 import com.example.itcentar_fitnessapp.adapters.EventDataViewAdapter;
 import com.example.itcentar_fitnessapp.clients.AppClient;
+import com.example.itcentar_fitnessapp.enums.MyDaysOfTheWeek;
 import com.example.itcentar_fitnessapp.interfaces.IComponentInitializer;
 import com.example.itcentar_fitnessapp.interfaces.IDayOfWeekClickedListener;
 import com.example.itcentar_fitnessapp.interfaces.IUserToDisplayCallback;
@@ -37,11 +41,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements IComponentInitializer {
+public class MainActivity extends AppCompatActivity implements IComponentInitializer, View.OnClickListener {
     TextView mUserGreetingsText,mUserNameText,mUserWorkoutLevelText,mUserPointsText;
     TextView mDayOfTheWeekText,mDayMonthText;
     RecyclerView mDaysOfWeekRecyclerView,mViewEventDataRecyclerView;
     RoundedImageView mUserImage;
+    ImageButton documentButton;
     User mUserToDisplay;
     List<Event> mWeeklyEvents;
     WeeklyProgress mWeeklyProgress;
@@ -54,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
     int mCollectedEventsCounter;
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mViewEventDataRecyclerView.getAdapter()!=null)
+            mViewEventDataRecyclerView.getAdapter().notifyDataSetChanged();
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -78,12 +89,26 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
         mUserGreetingsText=findViewById(R.id.text_view_user_greetings);
         mDaysOfWeekRecyclerView=findViewById(R.id.recycler_view_days_of_week);
         mViewEventDataRecyclerView=findViewById(R.id.recycler_view_event_data);
+        documentButton=findViewById(R.id.image_button_document);
+        documentButton.setOnClickListener(this);
         mUserToDisplayCallback=new UserToDisplayCallback();
         mEventToDisplayCallback=new EventToDisplayCallback();
         mWeeklyProgressCallback=new WeeklyProgressCallback();
         mDayOfWeekClickedListener=new DayOfWeekClickedListener();
         mWeeklyEvents=new ArrayList<>();
     }
+
+
+    @Override
+    public void onClick(View view) {
+        int clickedId=view.getId();
+        if(clickedId==R.id.image_button_document){
+            Intent intent = new Intent(this, ReorderElementsActivity.class);
+            startActivity(intent);
+        }
+    }
+
+
     private void displayUser(User fetchedUser) {
         Glide.with(this)
                 .load(fetchedUser.getImage())
@@ -92,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
         mUserPointsText.setText(fetchedUser.getPoints().toString());
         mUserWorkoutLevelText.setText(fetchedUser.getWorkout_level());
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void displayDateAndGreetUser() {
         LocalDate todaysDate=LocalDate.now();
@@ -100,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
         String dateToDisplay=day+" "+todaysDate.format(formatter);
         mDayMonthText.setText(dateToDisplay);
         DayOfWeek dayOfWeek=todaysDate.getDayOfWeek();
-        mDayOfTheWeekText.setText(dayOfWeek.toString());
+        mDayOfTheWeekText.setText(dayOfWeek.toString().charAt(0)+dayOfWeek.toString().substring(1).toLowerCase());
         greetUser();
     }
 
@@ -124,35 +150,52 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
         mUserGreetingsText.setText(greetings);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void checkDataForWeekCompleted() {
         mCollectedEventsCounter++;
         if(mCollectedEventsCounter==7) {
-            createWeekAdapterView();
+            createWeekAdapterView(0);
         }
     }
 
-    private void createWeekAdapterView() {
-        mDaysOfWeekViewAdapter=new DaysOfWeekViewAdapter(7,mWeeklyProgress,mWeeklyEvents,this,mDayOfWeekClickedListener);
-        RecyclerView.LayoutManager layoutManager=new GridLayoutManager((Context) this,7);
-        mDaysOfWeekRecyclerView.setLayoutManager(layoutManager);
-        mDaysOfWeekRecyclerView.setAdapter(mDaysOfWeekViewAdapter);
-
-        Event e=mDaysOfWeekViewAdapter.getEventToBind(mWeeklyProgress.getEvents().get(0).getEventId());
-        createEventToDisplayAdapterView(e);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createWeekAdapterView(int position) {
+        if(mDaysOfWeekViewAdapter==null) {
+            mDaysOfWeekViewAdapter = new DaysOfWeekViewAdapter(7, mWeeklyProgress, mWeeklyEvents, this, mDayOfWeekClickedListener);
+            RecyclerView.LayoutManager layoutManager = new GridLayoutManager((Context) this, 7);
+            mDaysOfWeekRecyclerView.setLayoutManager(layoutManager);
+            mDaysOfWeekRecyclerView.setAdapter(mDaysOfWeekViewAdapter);
+            int clickedPosition=mDaysOfWeekViewAdapter.getClickedPosition();
+            String clickedDay= MyDaysOfTheWeek.values()[clickedPosition].getDay();
+            DailyEvent clickedDailyEvent=mDaysOfWeekViewAdapter.getDailyEventByName(clickedDay);
+            Event clickedEvent=mDaysOfWeekViewAdapter.getEventToBind(clickedDailyEvent.getEventId());
+            createEventToDisplayAdapterView(clickedEvent);
+        }else{
+            mDaysOfWeekViewAdapter.setClickedPosition(position);
+            mDaysOfWeekRecyclerView.setAdapter(mDaysOfWeekViewAdapter);
+        }
     }
 
     private void createEventToDisplayAdapterView(Event eventToDisplay) {
-        if(eventToDisplay==null)
-            //ovde sam stao
-        mEventDataViewAdapter=new EventDataViewAdapter(5,mWeeklyProgress,eventToDisplay,this);
-        RecyclerView.LayoutManager layoutManager=new GridLayoutManager((Context) this,1);
-        mViewEventDataRecyclerView.setLayoutManager(layoutManager);
-        mViewEventDataRecyclerView.setAdapter(mEventDataViewAdapter);
+
+        if(mEventDataViewAdapter==null) {
+            mEventDataViewAdapter = new EventDataViewAdapter(AppClient.getInstance().getDisplayOrder(), mWeeklyProgress, eventToDisplay, this);
+            RecyclerView.LayoutManager layoutManager = new GridLayoutManager((Context) this, 1);
+            mViewEventDataRecyclerView.setLayoutManager(layoutManager);
+            mViewEventDataRecyclerView.setAdapter(mEventDataViewAdapter);
+        }else{
+            mEventDataViewAdapter.setEventToDisplay(eventToDisplay);
+            mViewEventDataRecyclerView.setAdapter(mEventDataViewAdapter);
+        }
+
     }
+
+
 
 
     private class WeeklyProgressCallback implements  IWeeklyProgressCallback{
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void getWeeklyProgressSuccess(WeeklyProgress fetchedProgress) {
             mWeeklyProgress=fetchedProgress;
@@ -172,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
 
 
     private class EventToDisplayCallback implements IEventToDisplayCallback {
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void getEventSuccess(Event fetchedEvent) {
             if(fetchedEvent!=null) {
@@ -179,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
                 checkDataForWeekCompleted();
             }
         }
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void getEventFailed(String log) {
             Log.e("EventError: ",log);
@@ -201,14 +246,14 @@ public class MainActivity extends AppCompatActivity implements IComponentInitial
 
     public class DayOfWeekClickedListener implements IDayOfWeekClickedListener{
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
-        public void dayOfWeekClicked(Event dailyEvent) {
-            if(dailyEvent==null){
-                Toast.makeText(getApplicationContext(),"Placeholder",Toast.LENGTH_SHORT).show();
-            }else{
-
-            }
+        public void dayOfWeekClicked(Event dailyEvent,int position) {
+            createEventToDisplayAdapterView(dailyEvent);
+            createWeekAdapterView(position);
 
         }
     }
+
+
 }

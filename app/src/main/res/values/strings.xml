@@ -12,4 +12,10 @@
     <string name="recipe_of_the_day">Recipe of the day</string>
     <string name="protein_pancakes_with_strawberries">Protein pancakes with strawberries</string>
     <string name="placeholder">Placeholder!</string>
+    <string name="this_weeks_progress">This Weeks Progress</string>
+    <string name="_25_completed_events">25 completed events</string>
+    <string name="scale">Scale</string>
+    <string name="drag_and_drop_elements_to_reorder_them">Drag and drop elements to reorder them!</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

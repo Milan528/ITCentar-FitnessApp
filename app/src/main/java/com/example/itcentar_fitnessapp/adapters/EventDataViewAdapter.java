@@ -11,30 +11,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.itcentar_fitnessapp.R;
 import com.example.itcentar_fitnessapp.clients.AppClient;
 import com.example.itcentar_fitnessapp.enums.HomeScreenParts;
+import com.example.itcentar_fitnessapp.holders.BetterYouHolder;
 import com.example.itcentar_fitnessapp.holders.DayOfWeekHolder;
 import com.example.itcentar_fitnessapp.holders.MindsetHolder;
 import com.example.itcentar_fitnessapp.holders.Placeholder;
+import com.example.itcentar_fitnessapp.holders.ProgressHolder;
 import com.example.itcentar_fitnessapp.holders.RecipeHolder;
+import com.example.itcentar_fitnessapp.holders.WorkoutHolder;
 import com.example.itcentar_fitnessapp.interfaces.IDayOfWeekClickedListener;
 import com.example.itcentar_fitnessapp.models.Event;
 import com.example.itcentar_fitnessapp.models.WeeklyProgress;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EventDataViewAdapter extends RecyclerView.Adapter {
-    private int size;
+    private List<HomeScreenParts> order;
     private WeeklyProgress weeklyProgress;
     private Event event;
     private Context context;
 
-    public EventDataViewAdapter(int size, WeeklyProgress weeklyProgress, Event event, Context context) {
-        this.size = size;
+    public EventDataViewAdapter(List<HomeScreenParts> order, WeeklyProgress weeklyProgress, Event event, Context context) {
+        this.order = order;
         this.weeklyProgress = weeklyProgress;
-        this.event = event;
+        this.event=checkEvent(event);
         this.context = context;
     }
 
     @Override
     public int getItemViewType(int position) {
-        int typeValue=AppClient.getInstance().getDisplayOrder().get(position).getValue();
+        int typeValue=order.get(position).getValue();
         return typeValue;
     }
 
@@ -44,21 +50,33 @@ public class EventDataViewAdapter extends RecyclerView.Adapter {
 
         View view;
         RecyclerView.ViewHolder viewHolder;
-        if(viewType== HomeScreenParts.WORKOUT_EQUIPMENT.getValue()){
-            view=inflateView(R.layout.view_placeholder,parent);
-            viewHolder=new Placeholder(view);
-        }else if(viewType== HomeScreenParts.RECIPE.getValue()){
+        if(viewType == HomeScreenParts.WORKOUT_EQUIPMENT.getValue()){
+            view=inflateView(R.layout.view_recipe_or_mindset,parent);
+            viewHolder=new WorkoutHolder(view,event.getWorkout(),context);
+        }else if(viewType == HomeScreenParts.RECIPE.getValue()){
             view=inflateView(R.layout.view_recipe_or_mindset,parent);
             viewHolder=new RecipeHolder(view, event.getRecipe(),context);
-        }else if(viewType== HomeScreenParts.MINDSET.getValue()){
+        }else if(viewType == HomeScreenParts.MINDSET.getValue()){
             view=inflateView(R.layout.view_recipe_or_mindset,parent);
             viewHolder=new MindsetHolder(view,event.getMindset(),context);
-        }else if(viewType== HomeScreenParts.PROGRESS.getValue()){
-            view=inflateView(R.layout.view_placeholder,parent);
-            viewHolder=new Placeholder(view);
-        }else if(viewType== HomeScreenParts.BETTER_YOU.getValue()){
-            view=inflateView(R.layout.view_placeholder,parent);
-            viewHolder=new Placeholder(view);
+        }else if(viewType == HomeScreenParts.WEEKLY_PROGRESS.getValue()){
+            view=inflateView(R.layout.view_progress_holder,parent);
+            viewHolder=new ProgressHolder(view,
+                    "This weeks progress",
+                    weeklyProgress.getWeekly_progress().toString()+" completed programs");
+        }else if(viewType == HomeScreenParts.MONTHLY_PROGRESS.getValue()){
+            view=inflateView(R.layout.view_progress_holder,parent);
+            viewHolder=new ProgressHolder(view,
+                    "This month progress",
+                    weeklyProgress.getMonthly_progress().toString()+" completed programs");
+        }else if(viewType == HomeScreenParts.WORKOUT_TIP.getValue()){
+            view=inflateView(R.layout.view_progress_holder,parent);
+            viewHolder=new ProgressHolder(view,
+                    "Workout tip!",
+                    event.getWorkout_tip());
+        }else if(viewType == HomeScreenParts.BETTER_YOU.getValue()){
+            view=inflateView(R.layout.view_better_you_holder,parent);
+            viewHolder=new BetterYouHolder(view,context);
         }else{
             view=inflateView(R.layout.view_placeholder,parent);
             viewHolder=new Placeholder(view);
@@ -78,6 +96,17 @@ public class EventDataViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return size;
+        return order.size();
+    }
+
+    public void setEventToDisplay(Event eventToDisplay) {
+       event=checkEvent(eventToDisplay);
+    }
+
+    private Event checkEvent(Event event){
+        if(event!=null)
+            return event;
+        else
+            return AppClient.getInstance().getPlaceholderEvent();
     }
 }

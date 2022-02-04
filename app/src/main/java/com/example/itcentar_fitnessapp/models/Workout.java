@@ -7,6 +7,7 @@ public class Workout {
     private String background;
     private Integer time;
     private List<Item> equipment;
+    private transient boolean isRestDay=false;
 
     public String getTitle() {
         return title;
@@ -38,5 +39,13 @@ public class Workout {
 
     public void setEquipment(List<Item> equipment) {
         this.equipment = equipment;
+    }
+
+    public boolean isRestDay() {
+        return isRestDay;
+    }
+
+    public void setRestDay(boolean restDay) {
+        isRestDay = restDay;
     }
 }
