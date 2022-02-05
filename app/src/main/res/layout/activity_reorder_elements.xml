@@ -48,7 +48,7 @@
             android:id="@+id/button_save_reorder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:autoSizeTextType="uniform"
             android:layout_weight="0.5"
             android:text="@string/save" />
@@ -58,7 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
-            android:layout_margin="5dp"
+            android:layout_margin="5sp"
             android:layout_weight="0.5"
             android:text="@string/cancel" />
 

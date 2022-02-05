@@ -38,7 +38,7 @@ public class DayOfWeekHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public void setCurrentlyDisplayed(boolean currentlyDisplayed) {
         isCurrentlyDisplayed = currentlyDisplayed;
-       // changeDisplayDesign();
+        changeDisplayDesign();
     }
 
     private void changeDisplayDesign() {
@@ -71,10 +71,7 @@ public class DayOfWeekHolder extends RecyclerView.ViewHolder implements View.OnC
     public void setStartingLetter(String letter){
         startingLetter.setText(letter);
     }
-    @Override
-    public void onClick(View view) {
-        onClickListener.dayOfWeekClicked(event,getAdapterPosition());
-    }
+
 
     public DailyEvent getDailyEvent() {
         return dailyEvent;
@@ -84,5 +81,10 @@ public class DayOfWeekHolder extends RecyclerView.ViewHolder implements View.OnC
         this.dailyEvent = dailyEvent;
         if(dailyEvent!=null)
            setStartingLetter(this.dailyEvent.getDay().charAt(0)+"");
+    }
+
+    @Override
+    public void onClick(View view) {
+        onClickListener.dayOfWeekClicked(event,getAdapterPosition());
     }
 }

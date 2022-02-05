@@ -10,6 +10,8 @@ import com.example.itcentar_fitnessapp.models.User;
 import com.example.itcentar_fitnessapp.models.WeeklyProgress;
 import com.example.itcentar_fitnessapp.models.Workout;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +42,7 @@ public class FitnessAppRetrofitClient implements IRetrofitClient {
                 if(!response.isSuccessful()){
                     return;
                 }
-               User user= response.body();
+                User user= response.body();
                 callback.getUserSuccess(user);
             }
             @Override
@@ -52,7 +54,7 @@ public class FitnessAppRetrofitClient implements IRetrofitClient {
 
     @Override
     public void getEventToDisplay(IEventToDisplayCallback callback,Integer eventId) {
-        String myUrl=BASE_URL+"event/"+eventId.toString()+".json";
+        String myUrl="event/"+eventId.toString()+".json";
         Call<Event> call=mRetrofitAPI.getEvent(myUrl);
         call.enqueue(new Callback<Event>() {
             @Override
@@ -64,6 +66,7 @@ public class FitnessAppRetrofitClient implements IRetrofitClient {
                 }
                 Event event= response.body();
                 event.setEventId(eventId);
+                event.setPlaceholder(false);
                 callback.getEventSuccess(event);
             }
             @Override
@@ -93,6 +96,5 @@ public class FitnessAppRetrofitClient implements IRetrofitClient {
             }
         });
     }
-
 
 }

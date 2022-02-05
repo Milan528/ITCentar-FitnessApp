@@ -12,7 +12,6 @@
         android:background="@color/whiteGray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,14 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.75" />
+                app:layout_constraintGuide_percent="0.8" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.35" />
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline12"
@@ -89,17 +83,16 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_points_holder"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_layout_lightteal_border"
-                android:padding="2dp"
+                android:paddingTop="5sp"
+                android:paddingBottom="5sp"
                 app:layout_constraintBottom_toTopOf="@+id/text_view_day_of_the_week"
-                app:layout_constraintDimensionRatio="0.8:0.3"
                 app:layout_constraintEnd_toEndOf="@+id/image_view_user_image"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/image_view_user_image">
 
 
@@ -119,12 +112,6 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.35" />
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.9"/>
 
 
                 <ImageView
@@ -133,64 +120,58 @@
                     android:src="@mipmap/fire"
                     app:layout_constraintBottom_toBottomOf="@+id/layout_points_holder"
                     app:layout_constraintEnd_toEndOf="@+id/guideline14"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="@+id/guideline13"
                     app:layout_constraintTop_toTopOf="@+id/layout_points_holder" />
 
                 <TextView
                     android:id="@+id/text_view_user_points"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:autoSizeTextType="uniform"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:text="@string/points"
+                    android:textSize="8sp"
                     android:textColor="@color/teal"
                     app:layout_constraintTop_toTopOf="@+id/layout_points_holder"
                     app:layout_constraintBottom_toBottomOf="@+id/layout_points_holder"
-                    app:layout_constraintDimensionRatio="2:1"
-                    app:layout_constraintEnd_toEndOf="@+id/guideline15"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline14" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/image_view_user_image"
-                app:layout_constraintDimensionRatio="2:1"
+
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/image_view_user_image">
 
 
                 <TextView
                     android:id="@+id/text_view_user_greetings"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.25"
-                    android:autoSizeTextType="uniform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="@string/greetings"
                     android:textColor="@color/gray" />
 
                 <TextView
                     android:id="@+id/text_view_user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.4"
-                    android:autoSizeTextType="uniform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
                     android:text="@string/username"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_user_workout_level"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.3"
-                    android:autoSizeTextType="uniform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
                     android:text="@string/workout_level"
                     android:textColor="@color/teal" />
             </LinearLayout>
@@ -200,9 +181,8 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="5sp"
                 app:layout_constraintBottom_toBottomOf="@+id/image_view_user_image"
-                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintDimensionRatio="2:0.8"
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="@+id/guideline8"
                 app:layout_constraintTop_toTopOf="@+id/guideline4">
@@ -229,15 +209,13 @@
 
             <TextView
                 android:id="@+id/text_view_day_of_the_week"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
-                android:autoSizeTextType="uniform"
                 android:text="@string/Monday"
                 android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintDimensionRatio="2:0.7"
-                app:layout_constraintEnd_toStartOf="@+id/guideline9"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/image_view_user_image" />
 
@@ -264,13 +242,14 @@
 
                 <TextView
                     android:id="@+id/text_view_date"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="0.6"
-                    android:autoSizeTextType="uniform"
                     android:gravity="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
                     android:text="25 September"
                     android:textColor="@color/white" />
             </LinearLayout>

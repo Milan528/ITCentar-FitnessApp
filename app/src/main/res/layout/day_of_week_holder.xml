@@ -9,18 +9,17 @@
 
 <TextView
     android:id="@+id/text_view_daily_event"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/text_view_round_shape_teal_border"
     android:text="@string/letter_m"
     android:textColor="@color/black"
-    android:autoSizeTextType="uniform"
-    android:textAlignment="center"
+    android:textSize="14sp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:gravity="center"
-    app:layout_constraintVertical_bias="0.25"/>
+    />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

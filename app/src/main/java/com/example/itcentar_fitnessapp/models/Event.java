@@ -7,6 +7,7 @@ public class Event {
     private String workout_tip;
     private boolean completed;
     private transient Integer eventId;
+    private transient boolean isPlaceholder;
 
     public Workout getWorkout() {
         return workout;
@@ -54,5 +55,13 @@ public class Event {
 
     public void setEventId(Integer eventId) {
         this.eventId = eventId;
+    }
+
+    public boolean isPlaceholder() {
+        return isPlaceholder;
+    }
+
+    public void setPlaceholder(boolean placeholder) {
+        isPlaceholder = placeholder;
     }
 }

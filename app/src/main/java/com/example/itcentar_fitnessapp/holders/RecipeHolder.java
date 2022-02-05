@@ -15,21 +15,24 @@ import com.makeramen.roundedimageview.RoundedImageView;
 public class RecipeHolder extends RecyclerView.ViewHolder {
     static final String TAG="Recipe of the day";
     RoundedImageView imageToDisplay;
-    TextView recipeTextView,tittle;
+    TextView holderTittle,tittle;
     Recipe recipe;
     Context context;
     public RecipeHolder(@NonNull View itemView,Recipe recipeToBind,Context context) {
         super(itemView);
-        this.tittle=itemView.findViewById(R.id.text_view_recipe_mindset_tittle);
-        this.imageToDisplay=itemView.findViewById(R.id.image_view_recipe_mindset);
-        this.recipeTextView=itemView.findViewById(R.id.text_view_recipe_mindset);
+        this.tittle=itemView.findViewById(R.id.text_view_recipe_mindset_workout_tittle);
+        this.imageToDisplay=itemView.findViewById(R.id.image_view_recipe_mindset_workout);
+        this.holderTittle=itemView.findViewById(R.id.text_view_recipe_mindset_workout);
         this.context=context;
-        recipeTextView.setText(RecipeHolder.TAG);
+        holderTittle.setText(RecipeHolder.TAG);
         recipe=recipeToBind;
         tittle.setText(recipe.getTitle());
         Glide.with(context)
                 .load(recipe.getBackground())
                 .into(imageToDisplay);
 
+    }
+    public void setHolderTittleVisibility(int visibility){
+        holderTittle.setVisibility(visibility);
     }
 }

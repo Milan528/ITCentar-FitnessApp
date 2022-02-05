@@ -62,13 +62,11 @@ public class DaysOfWeekViewAdapter extends RecyclerView.Adapter<DayOfWeekHolder>
         else
             holder.setCurrentlyDisplayed(false);
 
-        String dayString= MyDaysOfTheWeek.values()[position].getDay();
+        String dayString=MyDaysOfTheWeek.values()[position].getDay();
         DailyEvent dailyEvent=getDailyEventByName(dayString);
         Event eventToBind=getEventToBind(dailyEvent.getEventId());
         holder.setEvent(eventToBind);
         holder.setDailyEvent(dailyEvent);
-        //String startLetter=weeklyProgress.getEvents().get(position).getDay().charAt(0)+"";
-        //holder.setStartingLetter(startLetter);
     }
 
 
