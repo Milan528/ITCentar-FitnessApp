@@ -192,7 +192,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="10sp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/document"
+                    android:background="@mipmap/document"
                     android:scaleType="centerCrop" />
 
                 <ImageButton
@@ -200,7 +200,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:background="@drawable/bell"
+                    android:background="@mipmap/bell"
                     android:scaleType="centerCrop" />
             </LinearLayout>
 
