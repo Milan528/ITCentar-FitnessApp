@@ -88,9 +88,8 @@
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/rounded_layout_lightteal_border"
-                android:paddingTop="5sp"
-                android:paddingBottom="5sp"
+                android:background="@drawable/rounded_corners_layout_lighteal_border"
+                android:padding="8sp"
                 app:layout_constraintBottom_toTopOf="@+id/text_view_day_of_the_week"
                 app:layout_constraintEnd_toEndOf="@+id/image_view_user_image"
                 app:layout_constraintStart_toStartOf="@+id/image_view_user_image">
@@ -110,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.35" />
+                    app:layout_constraintGuide_percent="0.4" />
 
 
 
@@ -128,7 +127,6 @@
                     android:id="@+id/text_view_user_points"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoSizeTextType="uniform"
                     android:gravity="center_vertical"
                     android:text="@string/points"
                     android:textSize="8sp"
@@ -250,7 +248,7 @@
                     android:gravity="center"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:text="25 September"
+                    android:text="@string/_25_september"
                     android:textColor="@color/white" />
             </LinearLayout>
 

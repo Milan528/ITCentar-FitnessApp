@@ -30,7 +30,7 @@
         android:id="@+id/text_view_better_you"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5 day better you program"
+        android:text="@string/_5_day_better_you_program"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_double_arrow_white" />
+        app:srcCompat="@mipmap/arrow" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
