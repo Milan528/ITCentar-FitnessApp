@@ -18,4 +18,5 @@
     <string name="drag_and_drop_elements_to_reorder_them">Drag and drop elements to reorder them!</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="week_progress_month_progress_workout_tip">Week progress, month progress, workout tip</string>
 </resources>

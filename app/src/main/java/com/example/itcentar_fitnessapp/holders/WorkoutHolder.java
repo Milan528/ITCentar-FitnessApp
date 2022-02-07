@@ -49,4 +49,8 @@ public class WorkoutHolder extends RecyclerView.ViewHolder {
     public void setHolderTittleVisibility(int visibility){
         holderTittle.setVisibility(visibility);
     }
+    public void setWorkoutTittleVisibility(int visibility){
+        tittle.setVisibility(visibility);
+    }
+
 }

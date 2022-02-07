@@ -35,4 +35,7 @@ public class RecipeHolder extends RecyclerView.ViewHolder {
     public void setHolderTittleVisibility(int visibility){
         holderTittle.setVisibility(visibility);
     }
+    public void setRecipeTittleVisibility(int visibility){
+        tittle.setVisibility(visibility);
+    }
 }

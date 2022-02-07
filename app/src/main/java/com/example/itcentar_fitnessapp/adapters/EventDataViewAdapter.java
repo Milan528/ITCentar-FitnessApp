@@ -60,12 +60,21 @@ public class EventDataViewAdapter extends RecyclerView.Adapter {
             if(viewType == HomeScreenParts.WORKOUT_EQUIPMENT.getValue()){
                 viewHolder=new WorkoutHolder(view,event.getWorkout(),context);
                 ((WorkoutHolder)viewHolder).setHolderTittleVisibility(View.GONE);
+                if(event.isPlaceholder()) {
+                    ((WorkoutHolder) viewHolder).setWorkoutTittleVisibility(View.GONE);
+                }
             }else if(viewType == HomeScreenParts.RECIPE.getValue()){
                 viewHolder=new RecipeHolder(view, event.getRecipe(),context);
-                if(event.isPlaceholder())
-                    ((RecipeHolder)viewHolder).setHolderTittleVisibility(View.GONE);
+                if(event.isPlaceholder()){
+                    ((RecipeHolder) viewHolder).setHolderTittleVisibility(View.GONE);
+                    ((RecipeHolder) viewHolder).setRecipeTittleVisibility(View.GONE);
+                }
             }else if(viewType == HomeScreenParts.MINDSET.getValue()){
                 viewHolder=new MindsetHolder(view,event.getMindset(),context);
+                if(event.isPlaceholder()){
+                    ((MindsetHolder) viewHolder).setHolderTittleVisibility(View.GONE);
+                    ((MindsetHolder) viewHolder).setMindsetTittleVisibility(View.GONE);
+                }
             }else if(viewType == HomeScreenParts.WEEKLY_PROGRESS.getValue()){
                 viewHolder=new ProgressHolder(view,
                         "This weeks progress",

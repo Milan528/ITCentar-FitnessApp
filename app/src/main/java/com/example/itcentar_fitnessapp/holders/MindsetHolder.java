@@ -35,4 +35,7 @@ public class MindsetHolder extends RecyclerView.ViewHolder {
     public void setHolderTittleVisibility(int visibility){
         holderTittle.setVisibility(visibility);
     }
+    public void setMindsetTittleVisibility(int visibility){
+        tittle.setVisibility(visibility);
+    }
 }

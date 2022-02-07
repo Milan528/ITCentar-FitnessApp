@@ -6,7 +6,4 @@ public abstract class MyAppData {
     public static final Integer EVENT_TO_DISPLAY_ADAPTER_SIZE=1;
     public static final Integer WORKOUT_EQUIPMENT_ADAPTER_SIZE=3;
 
-
-
-
 }
