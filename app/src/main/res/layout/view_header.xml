@@ -79,7 +79,8 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/guideline4"
                 app:riv_corner_radius="12dp"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars"
+                tools:ignore="MissingClass" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_points_holder"

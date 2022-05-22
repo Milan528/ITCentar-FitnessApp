@@ -135,12 +135,12 @@ public class HomeScreenActivity extends AppCompatActivity implements IComponentI
         int currentHour=Integer.parseInt(timeIn24Hours);
         if(currentHour>=5 && currentHour<12){
             displayGreetings("Good Morning");
-        }else if(currentHour>=13 && currentHour<17)
+        }else if(currentHour>=12 && currentHour<17)
             displayGreetings("Good Afternoon");
-        else if(currentHour>=17 || currentHour<5)
-            displayGreetings("Good Evening");
+//        else if(currentHour>=17 || currentHour<5)
+//            displayGreetings("Good Evening");
         else
-            displayGreetings("Greetings");
+            displayGreetings("Good Evening");
     }
 
     private void displayGreetings(String greetings) {
